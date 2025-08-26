@@ -1,0 +1,105 @@
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Courier New", monospace;
+  transition: background 1s ease, color 0.3s;
+  color: white;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.clock {
+  display: flex;
+  font-size: 5rem;
+  gap: 15px;
+  user-select: none;
+  align-items: center;
+}
+
+.time {
+  position: relative;
+  perspective: 500px;
+}
+
+.time::before {
+  content: attr(data-prev);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-origin: bottom;
+  transform: rotateX(0);
+  background: rgba(255,255,255,0.05);
+  backface-visibility: hidden;
+  transition: transform 0.5s ease;
+}
+
+.time.flip::before {
+  transform: rotateX(-90deg);
+}
+
+.colon {
+  font-size: 5rem;
+  animation: blink 1s steps(1) infinite;
+}
+
+.ampm {
+  font-size: 2rem;
+  margin-left: 10px;
+}
+
+.date {
+  font-size: 1.5rem;
+  opacity: 0.9;
+  text-align: center;
+}
+
+/* Background themes */
+.morning {
+  background: linear-gradient(to top, #FFDEE9, #B5FFFC);
+}
+
+.afternoon {
+  background: linear-gradient(to top, #FDC830, #F37335);
+}
+
+.evening {
+  background: linear-gradient(to top, #0B486B, #F56217);
+}
+
+.night {
+  background: linear-gradient(to top, #141E30, #243B55);
+  color: #f0f0f0;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s, background 0.3s;
+}
+
+button:hover {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.light {
+  background: #f0f0f0 !important;
+  color: #111 !important;
+}
